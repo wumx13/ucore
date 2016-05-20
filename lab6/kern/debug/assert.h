@@ -1,5 +1,5 @@
-#ifndef __USER_LIBS_ULIB_H__
-#define __USER_LIBS_ULIB_H__
+#ifndef __KERN_DEBUG_ASSERT_H__
+#define __KERN_DEBUG_ASSERT_H__
 
 #include <defs.h>
 
@@ -23,16 +23,5 @@ void __noreturn __panic(const char *file, int line, const char *fmt, ...);
 #define static_assert(x)                                \
     switch (x) { case 0: case (x): ; }
 
-void __noreturn exit(int error_code);
-int fork(void);
-int wait(void);
-int waitpid(int pid, int *store);
-void yield(void);
-int kill(int pid);
-int getpid(void);
-void print_pgdir(void);
-unsigned int gettime_msec(void);
-void lab6_set_priority(uint32_t priority);
-
-#endif /* !__USER_LIBS_ULIB_H__ */
+#endif /* !__KERN_DEBUG_ASSERT_H__ */
 
