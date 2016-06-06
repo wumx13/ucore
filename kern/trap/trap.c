@@ -15,6 +15,7 @@
 #include <error.h>
 #include <sched.h>
 #include <sync.h>
+#include <proc.h>
 
 #define TICK_NUM 100
 
@@ -230,11 +231,17 @@ trap_dispatch(struct trapframe *tf) {
         /* you should upate you lab1 code (just add ONE or TWO lines of code):
          *    Every TICK_NUM cycle, you should set current process's current->need_resched = 1
          */
+        /* LAB6 YOUR CODE */
+        /* IMPORTANT FUNCTIONS:
+	     * run_timer_list
+	     *----------------------
+	     * you should update your lab5 code (just add ONE or TWO lines of code):
+         *    Every tick, you should update the system time, iterate the timers, and trigger the timers which are end to call scheduler.
+         *    You can use one funcitons to finish all these things.
+         */
         ticks ++;
-        if (ticks % TICK_NUM == 0) {
-            assert(current != NULL);
-            current->need_resched = 1;
-        }
+        assert(current != NULL);
+        run_timer_list();
         break;
     case IRQ_OFFSET + IRQ_COM1:
         c = cons_getc();
